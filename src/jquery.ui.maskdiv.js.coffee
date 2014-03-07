@@ -92,8 +92,5 @@ $.widget("ui.unmaskDiv",
     @element.off 'blur'
     @element.off 'keypress'
     @element.off 'keydown'
-    parent = @element.parent()
-    clone = _.clone(@element.html(@element.text()))
-    @element.remove()
-    parent.append(clone)
+    @element.html(@element.text())
 )
