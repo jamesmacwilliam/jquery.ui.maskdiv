@@ -12,7 +12,9 @@ jQuery, underscore.js
 
 Usage
 =================
-add widget with jQuery(selector).maskDiv(options) remove widget with jQuery(selector).unmaskDiv(options)
+add widget with jQuery(selector).maskDiv(options) 
+
+remove widget with jQuery(selector).unmaskDiv(options)
 
 Options
 =================
