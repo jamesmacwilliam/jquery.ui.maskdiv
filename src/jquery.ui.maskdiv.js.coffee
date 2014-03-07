@@ -50,6 +50,7 @@ $.widget("ui.maskDiv",
 
   _handle_blur_mask: (e, opts, div) ->
     delete @do_not_focus
+    div.html('') if (div.text() == opts.mask.join(opts.divider))
     opts.onBlur(e)
 
   _move_to_next_mask_sub_element: (e, opts, div) ->
