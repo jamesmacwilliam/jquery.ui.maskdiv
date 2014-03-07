@@ -1,15 +1,21 @@
 jquery.ui.maskdiv
 =================
 
-similar to masked input but for masking contenteditable divs with multiple styles in the mask
+Overview
+=================
 
 This widget works similarly to mask but within a contenteditable div rather than an input. The advantage in doing so is that the styling of the dividers can be manipulated as a result so that we are left with a mask that can have as many as 3 styles at once.
 
-Requirements: jQuery, underscore.js
+Requirements
+=================
+jQuery, underscore.js
 
-Usage: add widget with jQuery(selector).maskDiv(options) remove widget with jQuery(selector).unmaskDiv(options)
+Usage
+=================
+add widget with jQuery(selector).maskDiv(options) remove widget with jQuery(selector).unmaskDiv(options)
 
-available options:
+Options
+=================
 
 mask - an array of text specifying the non divider text, example ['MM', 'DD', 'YYYY']
 
