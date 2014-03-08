@@ -15,6 +15,22 @@ $.widget("ui.maskDiv",
     @element.on 'keypress', (e) => @_move_to_next_mask_sub_element(e, @options, @element)
     @element.on 'keydown', (e) => @_handle_keydown(e, @element, @options)
 
+  destroy: ->
+    @element.off('focus')
+    @element.off('blur')
+    @element.off('keypress')
+    @element.off('keydown')
+    @element.html(@element.text())
+    $.Widget.prototype.destroy.call(@)
+
+  _destroy: ->
+    @element.off('focus')
+    @element.off('blur')
+    @element.off('keypress')
+    @element.off('keydown')
+    @element.html(@element.text())
+    $.Widget.prototype.destroy.call(@)
+
   _handle_keydown: (e, div, opts) ->
     k = e.keyCode
     mask_string = _.flatten(opts.mask).join('')
@@ -49,8 +65,19 @@ $.widget("ui.maskDiv",
     delete @do_not_focus
 
   _handle_blur_mask: (e, opts, div) ->
+    e.preventDefault()
     delete @do_not_focus
-    div.html('') if (div.text() == opts.mask.join(opts.divider))
+    el_text = div.text().split('')
+    current_pos = @current_position
+    count_back = 0
+    splice_points = _.map _.clone(opts.mask).reverse(), (str) ->
+      count_back += str.length
+      el_text.length - count_back
+    divider_pos = _.compact(_.map(splice_points, (point) ->
+      1 if current_pos >= point && point > 0
+    )).length
+    el_text.splice(@current_position + divider_pos, el_text.length)
+    div.html(el_text.join(''))
     opts.onBlur(e)
 
   _move_to_next_mask_sub_element: (e, opts, div) ->
@@ -89,9 +116,6 @@ $.widget("ui.maskDiv",
 $.widget("ui.unmaskDiv",
   options: {}
   _create: ->
-    @element.off 'focus'
-    @element.off 'blur'
-    @element.off 'keypress'
-    @element.off 'keydown'
-    @element.html(@element.text())
+    @element.maskDiv('destroy')
+    @element.unmaskDiv('destroy')
 )
