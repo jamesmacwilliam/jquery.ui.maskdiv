@@ -82,7 +82,7 @@ $.widget("ui.maskDiv",
 
   _move_to_next_mask_sub_element: (e, opts, div) ->
     e.preventDefault()
-    current_key = String.fromCharCode(e.keyCode)
+    current_key = String.fromCharCode(e.keyCode || e.which)
     div.find("[data-num=#{@current_position}]").text(current_key).removeClass(
       opts.unedited_char_class
     ).addClass(opts.edited_char_class)
