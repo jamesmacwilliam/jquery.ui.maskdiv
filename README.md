@@ -14,12 +14,19 @@ Usage
 =================
 add widget with jQuery(selector).maskDiv(options) 
 
-remove widget with jQuery(selector).unmaskDiv(options)
+remove widget with jQuery(selector).maskDiv('remove')
 
 Options
 =================
 
 mask - an array of text specifying the non divider text, example ['MM', 'DD', 'YYYY']
+
+mask_matchers - an array of text specifying the non-divider text
+matchers
+  - options
+    - 9   - any number
+    - a   - any letter
+    - *   - any letter or number (default)
 
 divider - a string to denote the divider to place between the mask text strings ie: '/'
 
